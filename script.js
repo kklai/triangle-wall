@@ -34,11 +34,22 @@ function timed(){
 	window.setInterval(flip, 11000);
 }
 
-$(document).ready(function(){
-	for (var i = 0; i < 198; i++){
+var height;
+var width;
+function drawTriangles() {
+	height = $(window).height();
+	drawRow = Math.floor(height / 65);
+	width = $(window).width();
+	drawCol = Math.floor(width / 65);
+	triNumber = Math.floor(drawCol * drawRow)
+	for (var i = 0; i < triNumber; i++){
 		$('body').append('<div class="one"><div class="triangle top"></div></div>');
 	};
 	timed();
+}
+
+$(document).ready(function(){
+	drawTriangles();
 })
 
 $(window).load(function(){
