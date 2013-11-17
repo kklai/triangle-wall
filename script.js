@@ -31,11 +31,13 @@ function flip() {
 }
 
 function timed(){
-	window.setInterval(flip, 11000);
+	var time = Math.floor(triNumber / 0.016);
+	window.setInterval(flip, time);
 }
 
 var height;
 var width;
+var triNumber;
 function drawTriangles() {
 	height = $(window).height();
 	drawRow = Math.floor(height / 65);
