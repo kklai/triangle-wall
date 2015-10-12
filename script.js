@@ -7,8 +7,9 @@ var colors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#f2c820', '#e67e22', 
 function flip() {
 	tri = $('.triangle');
 	randomColor = colors[Math.floor(Math.random() * colors.length)];
+
 	if (clickVal === 'top') {
-		for (var i = 0; i < 200; i++) {
+		for (var i = 0; i < triangleNumber; i++) {
 			counter ++;
 			$(tri[i]).css('border-top-color', randomColor);
 			$(tri[i]).css('transform', 'rotateY(-180deg)');
@@ -18,7 +19,7 @@ function flip() {
 		counter = 0;
 		clickVal = 'bottom';
 	} else if (clickVal === 'bottom') {
-		for (var i = 0; i < 200; i++) {
+		for (var i = 0; i < triangleNumber; i++) {
 			counter ++;
 			$(tri[i]).css('border-top-color', randomColor);
 			$(tri[i]).css('transform', 'rotateY(-360deg)');
@@ -30,30 +31,32 @@ function flip() {
 	}
 }
 
-function timed(){
-	var time = Math.floor(triNumber / 0.016);
-	window.setInterval(flip, time);
-}
 
-var height;
-var width;
-var triNumber;
-function drawTriangles() {
-	height = $(window).height();
-	drawRow = Math.floor(height / 65);
-	width = $(window).width();
-	drawCol = Math.floor(width / 65);
-	triNumber = Math.floor(drawCol * drawRow)
-	for (var i = 0; i < triNumber; i++){
-		$('body').append('<div class="one"><div class="triangle top"></div></div>');
-	};
-	timed();
+function timed(totalTime){
+	window.setInterval(flip, totalTime*100);
 }
 
 $(document).ready(function(){
-	drawTriangles();
-})
+
+	// calculate how many triangles to draw
+
+	triNumH = Math.floor(($(window).width() - 16) / 55);
+	triNumV	= Math.floor(($(window).height() - 16) / 55);
+
+	triangleNumber = triNumV * triNumH;
+
+	for (var i = 0; i < triangleNumber; i++){
+		$('body').append('<div class="one"><div class="triangle top"></div></div>');
+	}
+
+	var totalTime = 0;
+	for (i=0; i < triangleNumber; i++) {
+		totalTime ++;
+	}
+
+	timed(totalTime);
+});
 
 $(window).load(function(){
-	flip();
-})
+	flip(triangleNumber);
+});

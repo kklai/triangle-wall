@@ -6,13 +6,13 @@
 }
 
 .top {
-	border-top: 60px solid #f09;
-	border-right: 60px solid transparent;
+	border-top: 50px solid #f09;
+	border-right: 50px solid transparent;
 }
 
 .bottom {
-	border-bottom: 80px solid #f09;
-	border-left: 80px solid transparent;
+	border-bottom: 50px solid #f09;
+	border-left: 50px solid transparent;
 	margin: -45px 0 0 2px;
 }
 
